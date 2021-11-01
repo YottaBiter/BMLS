@@ -1,0 +1,114 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Quizzes
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+</head>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">{{user.first_name}} {{user.last_name}}'s  Quizzes</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="table">
+                    <table class="table">
+                        <tr>
+                            <th>Quiz No.</th>
+                            <th>Staff ID</th>
+                            <th>Staff Name</th>
+                            <th>Due Date</th>
+                            <th>Quiz</th>
+                            <th>Issue</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for Quiz in Quizzes %}
+                        <tr>
+                            <td>{{ quiz.id }}</td>
+                            <td>{{ quiz.staff_id.admin.id }}</td>
+                            <td>{{ quiz.staff_id.admin.first_name }} {{ quiz.staff_id.admin.last_name }}</td>
+                            <td>{{ quiz.leave_date }}</td>
+                            <td>{{ quiz.leave_message }}</td>
+                            <td>{{ quiz.created_at }}</td>
+                            <td>
+                                {% if leave.leave_status == 0 %}
+                                <a href="{% url 'staff_approve_leave' leave_id=leave.id %}" class="btn btn-outline-success" >Approve</a>
+                                <a class="btn btn-outline-danger" href="{% url 'staff_disapprove_leave' leave_id=leave.id %}" >Disapprove</a>
+                                {% elif leave.leave_status == 1  %}
+                                 <button class="btn btn-outline-warning" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Approved</button>
+                                {% else %}0
+                                <button class="btn btn-outline-danger" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Disapproved</button>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+  <!-- Modal -->
+
+    <!-- /.content -->
+{% endblock main_content %}

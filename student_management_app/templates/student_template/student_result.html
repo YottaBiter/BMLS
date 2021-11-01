@@ -1,0 +1,122 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Result
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+
+</head>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+                    <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+
+            <!-- /.card -->
+           <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Result of &nbsp  " {{ user.first_name }} {{ user.last_name }} "</h3>
+              </div>
+
+               <div class="table">
+               <table class="table" border="1">
+                   <tr>
+                       <th>ID</th>
+                       <th>Subject</th>
+                       <th>Internal Marks</th>
+                       <th>Mid Term</th>
+                       <th>Final Term</th>
+                       <th>Total Marks</th>
+                       <th>Grade</th>
+                       <th>Status</th>
+                   </tr>
+                   {% for row in studentresult %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.subject_id.subject_name }}</td>
+                            <td>{{ row.subject_assignment_marks }}</td>
+                            <td>{{ row.subject_midterm_marks }}</td>
+                            <td>{{ row.subject_final_marks }}</td>
+                            <td>{{ row.subject_exam_marks }}</td>
+                            <td>
+                                {% if row.subject_exam_marks < 24 %}
+                                <span>F</span>
+                                {% elif row.subject_exam_marks > 47 %}
+                                <span>A</span>
+                                {% elif row.subject_exam_marks > 38 %}
+                                <span>B</span>
+                                {% else %}
+                                <span>C</span>
+                                
+                                {% endif %}
+                            </td>
+
+
+                            <td>
+                                {% if row.subject_exam_marks >= 24 %}
+                                <span class="alert alert-success">PASS</span>
+                                {% else %}
+                                 <span class="alert alert-danger">FAIL</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                   {% endfor %}
+               </table>
+               </div>
+            </div>
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

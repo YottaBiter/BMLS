@@ -1,0 +1,155 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+Take Quiz
+{% endblock page_title %}
+{% block main_content %}
+
+<head>
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+
+</head>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+                    <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Take Quiz</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+               <form action="{% url 'staff_take_assignment_save' %}" method="post">
+                <div class="card-body">
+                  
+                  <div class="form-group">
+                    <label>Subject </label>
+                    <select class="form-control" name="subject" id="subject">
+                        {% for subject in subjects %}
+                          <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+
+                   <div class="form-group">
+                    <label>Quiz Last Date </label>
+                       {% csrf_token %}
+                    <input type="date" name="assignment_date" class="form-control" placeholder="Leave Date">
+                  </div>
+                  <div class="form-group">
+                    <label>Write Quiz</label>
+                    <textarea class="form-control" rows="6" name="assignment_msg" placeholder="Write here........."></textarea>
+                  </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-outline-success btn-block" id="fetch_student">Create Quiz</button>
+                </div>
+               </form>
+            </div>
+
+            <!-- /.card -->
+           <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Quizzes History</h3>
+              </div>
+
+               <div class="table">
+               <table class="table">
+                   <tr>
+                       <th>Subject</th>
+                       <th>Quiz No.</th>
+                       <th>Quiz Date</th>
+                       <th>Quiz Details</th>
+                       <th>Quiz Grade</th>
+                   </tr>
+                   {% for row in assignment_data %}
+                        <tr>
+                            <td>{{ row.subject_name }}</td>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.quiz_date }}</td>
+                            <td>{{ row.quiz_message }}</td>
+                            <td>
+                                {% if row.quiz_status == 1 %}
+                                    <span class="alert alert-success">Pass</span>
+                                {% elif row.quiz_status == 2 %}
+                                    <span class="alert alert-danger">Fail</span>
+                                {% else %}
+                                    <span class="alert alert-info">Pending</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                   {% endfor %}
+               </table>
+               </div>
+            </div>
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

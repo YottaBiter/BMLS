@@ -1,0 +1,114 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Student Apply for Leave
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 80%;
+    /*margin-left: 24%;*/
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 85%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+</head>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Student Apply for Leave</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="table">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Leave Date</th>
+                            <th>Leave Message</th>
+                            <th>Apply On</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for leave in leaves %}
+                        <tr>
+                            <td>{{ leave.id }}</td>
+                            <td>{{ leave.student_id.admin.id }}</td>
+                            <td>{{ leave.student_id.admin.first_name }} {{ leave.student_id.admin.last_name }}</td>
+                            <td>{{ leave.leave_date }}</td>
+                            <td>{{ leave.leave_message }}</td>
+                            <td>{{ leave.created_at }}</td>
+                            <td>
+                                {% if leave.leave_status == 0 %}
+                                <a href="{% url 'student_approve_leave' leave_id=leave.id %}" class="btn btn-outline-success" >Approve</a>
+                                <br><br>
+                                <a class="btn btn-outline-danger" href="{% url 'student_disapprove_leave' leave_id=leave.id %}" >Disapprove</a>
+                                {% elif leave.leave_status == 1  %}
+                                 <button class="btn btn-outline-warning" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Approved</button>
+                                {% else %}
+                                <button class="btn btn-outline-danger" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Disapproved</button>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- /.content -->
+{% endblock main_content %}

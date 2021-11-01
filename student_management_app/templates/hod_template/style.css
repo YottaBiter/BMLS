@@ -1,0 +1,43 @@
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+

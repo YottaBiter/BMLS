@@ -1,0 +1,106 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+All Subjects   
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  <style type="text/css">
+  
+  
+  .inner,.small-box,.card
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+  }
+  
+  .inner
+  {
+    height: 120px;
+  }
+
+  
+</style>
+</head>
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+           
+                       {% for subject in subjects %}
+  <label value="{{ subject.id }}">{{ subject.subject_name }}</label><br>
+  
+        <div class="row">
+
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-purple">
+              <div class="inner">
+                <h3>1</h3>
+
+                <p><b>Quizzes</b></p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-book-reader"></i>
+              </div>
+              <a href="{% url 's_quizz' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3>2</h3>
+
+                <p>Assignments</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <a href="{% url 'student_assignment' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>1</h3>
+
+                <p>Exams</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <a href="{% url 'student_view_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-lightblue">
+              <div class="inner">
+                <h3>5</h3>
+
+                <p>Lectures</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-book"></i>
+              </div>
+              <a href="{% url 'student_view_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            
+
+            </div>
+          </div>
+          <br>
+           {% endfor %}
+              
+    <!-- /.content -->
+{% endblock main_content %}
+{% block custom_js %}
+
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+
+{% endblock custom_js %}

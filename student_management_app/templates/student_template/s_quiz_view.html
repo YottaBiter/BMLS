@@ -1,0 +1,111 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Web Engineering ( CS-666 )
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+
+</head>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h5 class="card-title"><h3>Quiz #1</h3></h5>
+    
+                <hr>
+                <b>Due : 22June 12:00 PM    |   Marks: 10   |   Attempt : 1
+                <br>
+                <b>File Type : PDF and Docx  
+                  <hr>
+
+              </div>
+
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="{% url 'student_profile_save' %}" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  This assignment was locked 28 May at 21:00. <br>
+No late submission will be entertained.<br>
+
+Assignments submitted through Email or Whatsapp will not be considered.
+<br>
+Only one attempt is allowed. Make sure you are uploading the correct file (pdf or docx only).
+<br>
+ 
+
+Solve the following Questions.
+
+ <br>
+
+Q1: Use div tag and display and hide your name by clicking on a button.<br>
+Q2: By using JQuery change the background color of the <div> element by clicking the button.
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

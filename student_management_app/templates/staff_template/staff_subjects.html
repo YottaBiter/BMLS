@@ -1,0 +1,67 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+All Subjects
+{% endblock page_title %}
+{% block main_content %}
+
+<head>
+  <style type="text/css">
+  
+  
+  .inner,.small-box,.card
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+  }
+    
+  
+</style>
+</head>
+
+    <!-- Main content -->
+    
+    
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+          	{% for subject in subjects %}
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                
+
+                <p><br>  
+                          <label value="{{ subject.id }}">{{ subject.subject_name }}</label>
+                        
+                    </p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+
+            <!--   <a href="{% url 'staff_subject_details' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+ -->
+            </div>
+
+          </div>
+          {% endfor %}
+                </div>
+              </div>
+                  
+          
+          </section>
+          
+             {% endblock main_content %}
+{% block custom_js %}
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+
+{% endblock custom_js %}
+
+
+
+
+
+
+

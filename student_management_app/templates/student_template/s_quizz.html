@@ -1,0 +1,103 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Web Engineering ( CS-666 ) 
+{% endblock page_title %}
+{% block main_content %}
+<head>
+  
+  
+  
+  <style type="text/css">
+    
+
+    .card
+    {
+      box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+  
+   /*<!-- Button design -->*/
+  .btn
+  {
+    width: 30%;
+    margin-left: 34%;
+    border:none;
+    transition: 1s;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover
+  {
+    width: 35%;
+    border:none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  /* Input fields design*/
+  .form-control
+  {
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:hover
+  {
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-control:focus
+  {
+    background: lightgreen;
+    box-shadow:  0 4px 8px 0 green, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+
+
+
+
+
+  </style>
+
+</head>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+                    <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+
+            <!-- /.card -->
+           <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Quizzes</h3>
+              </div>
+
+               <div class="table">
+               <table class="table" border="1">
+                   <tr>
+                       <th><a href="{% url 's_quiz_view' %}" class="small-box-footer"><i class="fas fa-rocket" style="color: green;"></i> Quiz #1 </a>
+                        <br>open | Due 22 June 12:00 pm | 10 Marks
+                                               </th>
+                       
+                   </tr>
+                   {% for row in studentresult %}
+                        <tr>
+                         
+
+                            <td>
+                                {% if row.subject_exam_marks >= 24 %}
+                                <span class="alert alert-success">PASS</span>
+                                {% else %}
+                                 <span class="alert alert-danger">FAIL</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                   {% endfor %}
+               </table>
+               </div>
+            </div>
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
