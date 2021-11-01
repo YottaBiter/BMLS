@@ -18,7 +18,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 </pre>
-Now enter tour desired cresidentials.
+Now enter your desired cresidentials.
 </ol>
 </ul>
 <p>Run Project: </p>
